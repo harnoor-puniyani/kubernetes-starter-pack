@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: queen-ingress
+  labels:
+    app: queen-compare
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /testPath(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: service-queen-compare
+                port:
+                  number: 9000

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-queen-compare
+  labels:
+    app: app-queen-compare
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: app-queen-compare
+  template:
+    metadata:
+      name: app-queen-compare
+      labels:
+        app: app-queen-compare
+    spec:
+      containers:
+        - name: app-queen-compare
+          image: harnoorpuniyani/queen-compare:v1
+          ports:
+            - containerPort: 3000
