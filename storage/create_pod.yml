@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: pv-consumer
+  namespace: nginx
+  labels:
+    app: nginx-type
+spec:
+  containers:
+    - name: nginx-pv-consumer
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: /var/www/html
+          name: local-pvc
+  volumes:
+    - name: local-pvc
+      persistentVolumeClaim:
+        claimName: local-pvc

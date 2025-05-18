@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-pv-consumer-service
+  namespace: nginx
+  labels:
+    app: nginx-type
+    test: dev
+spec:
+  selector:
+    app: nginx-type
+  ports:
+    - protocol: TCP
+      port: 80 #outside port
+      targetPort: 80
+  type: ClusterIP 
