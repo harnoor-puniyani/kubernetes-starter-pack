@@ -18,5 +18,14 @@ spec:
       containers:
         - name: app-queen-compare
           image: harnoorpuniyani/queen-compare:v1
+          volumeMounts:
+            - name: testconfigmap
+              mountPath: "/config"
+              readOnly: true
           ports:
             - containerPort: 3000
+      volumes:
+        - name: testconfigmap
+          configMap:
+            name: test-configmap
+           
